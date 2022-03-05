@@ -14,7 +14,7 @@ sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
 
 def get_the_goods(id): 
-    playlist_features_list = ["artist","album","track_name",  "track_id", "danceability","energy","key","loudness","mode", "speechiness","instrumentalness","liveness","valence","tempo", "duration_ms","time_signature"]
+    playlist_features_list = ["artist","album","track_name",  "track_id", "danceability","energy","popularity","key","loudness","mode", "speechiness","instrumentalness","liveness","valence","tempo", "duration_ms","time_signature"]
     playlist_df = pd.DataFrame(columns = playlist_features_list)
 
     playlist = sp.user_playlist_tracks('spotify', id)['tracks']['items']
