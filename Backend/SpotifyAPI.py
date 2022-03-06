@@ -14,22 +14,26 @@ sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
 
 def get_the_goods(id): 
-    playlist_features_list = ["artist","album","track_name",  "track_id", "danceability","energy","popularity","key","loudness","mode", "speechiness","instrumentalness","liveness","valence","tempo", "duration_ms","time_signature"]
+    playlist_features_list = ["artist","album","track_name",  "track_id", "popularity","danceability","energy","key","loudness","mode", "speechiness","instrumentalness","liveness","valence","tempo", "duration_ms","time_signature"] #"bpm"
     playlist_df = pd.DataFrame(columns = playlist_features_list)
-
+    
     playlist = sp.user_playlist_tracks('spotify', id)['tracks']['items']
+    #playlistkeys = sp.user_playlist_tracks('spotify', id)['tracks']['items'][0]['track']
+
     for trackdict in playlist:
         # Create empty dict
         playlist_features = {}
         # Get metadata
+        print(trackdict["track"]["album"])
         playlist_features["artist"] = trackdict["track"]["album"]["artists"][0]["name"]
         playlist_features["album"] = trackdict["track"]["album"]["name"]
         playlist_features["track_name"] = trackdict["track"]["name"]
         playlist_features["track_id"] = trackdict["track"]["id"]
+        playlist_features["popularity"] = trackdict["track"]["popularity"]
 
         # Get audio features
         audio_features = sp.audio_features(playlist_features["track_id"])[0]
-        for feature in playlist_features_list[4:]:
+        for feature in playlist_features_list[5:]:
             playlist_features[feature] = audio_features[feature]
         # Concat the dfs
         track_df = pd.DataFrame(playlist_features, index = [0])
@@ -38,35 +42,12 @@ def get_the_goods(id):
     return playlist_df
 
 
-Luke_df = get_the_goods('7tE5HvMmp8bTX9Hypss0Gv?si=a3c9598685614538')
+# df = get_the_goods('0sUfaZFPAzgj7XGTYhXqk8?si=2ffc266403894d42')
 
-print(Luke_df.head())
+df2 = get_the_goods('5seDwcnO3NmUxV5EXAeezb?si=9f89e3f0dc874ed1')
+avgDancibility = df2["danceability"].mean()
+avgEnergy = df2["energy"].mean()
+avgPopularity = df2["popularity"].mean()
 
 
-
-#Luke_df.to_csv('Luke_df.csv', index = False)
-
-
-# 0YJmUjzwx0aXGryEVjPb57?si=913eb69ca9d84a66 - Michal
-# 1OiuDYP2nveEaxJkG58bI4?si=d979c68f7c104cdf - Elisa
-# 1EKl9t3fjJaEhu6UHKRKUR?si=c51633c7659546d2 - Leonel
-# 0DaYW3ckeMH2nVUtFkxBSY?si=c816810a7fb441f0 - Anna
-# 1ygNs7ZLOToZSAPCTPMIz7?si=8944576fdae343a9 - Luke
-
-#Get all the metadata
-# goods = []
-# for index in range(len(playlist_info)):
-#     goods.append(playlist_info[index]['track'])
-
-# df = pd.DataFrame(goods)
-# print(df.head())
-#df.to_csv('AlisaTest.csv')
-# dfs = [] #Create a list of dataframes
-# for i in range(len(goods)):
-#     df = pd.DataFrame(goods[i]['artists']) #Get the artist list and join all dicts together as a dataframe
-#     dfs.append(df)
-
-# alldfs = pd.concat(dfs)
-# artist_names = list(alldfs['name'])
-
-# print(artist_names)
+print(avgDancibility, avgEnergy, avgPopularity)
