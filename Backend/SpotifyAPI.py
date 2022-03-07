@@ -24,7 +24,6 @@ def get_the_goods(id):
         # Create empty dict
         playlist_features = {}
         # Get metadata
-        print(trackdict["track"]["album"])
         playlist_features["artist"] = trackdict["track"]["album"]["artists"][0]["name"]
         playlist_features["album"] = trackdict["track"]["album"]["name"]
         playlist_features["track_name"] = trackdict["track"]["name"]
@@ -48,6 +47,6 @@ df2 = get_the_goods('5seDwcnO3NmUxV5EXAeezb?si=9f89e3f0dc874ed1')
 avgDancibility = df2["danceability"].mean()
 avgEnergy = df2["energy"].mean()
 avgPopularity = df2["popularity"].mean()
+avgBPM = df2["tempo"].mean()
 
-
-print(avgDancibility, avgEnergy, avgPopularity)
+print(avgDancibility, avgEnergy, avgPopularity, avgBPM)
