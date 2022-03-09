@@ -5,8 +5,8 @@ import pandas as pd
 import pprint
 
 # Personal CID and Secret access from spotify dashboard.
-cid = 'a34f732b034c40e3825a5349f686af69'
-secret = '4684e50124d9452b9f77c352e0e48333'
+cid = ''
+secret = ''
 
 #Authentication with the access keys above.
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
