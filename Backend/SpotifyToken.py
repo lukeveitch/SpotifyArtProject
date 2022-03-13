@@ -2,6 +2,7 @@ import requests
 import datetime
 import base64
 import datetime
+# from secrets import client_id, client_secret
 
 client_id = 'a0ba4546898d4b79ba7b2eb7aaa3f3a5'
 client_secret = '2cde9d2445884dd88f5b04ea5eb30887'
@@ -56,7 +57,7 @@ class SpotifyAPI(object):
 
         #update the access token expires time and change did expire to false
         self.access_token_expires = expires
-        self.access_token_did_expire = expires < now # if expires is greater than (which it should be) it will change the variable to false
+        self.access_token_did_expire = expires <= now # if expires is greater than (which it should be) it will change the variable to false
         self.access_token = access_token 
         # if self.access_token_did_expire:
         #     print(f"The access HaduToken expires at {self.access_token_expires}")
@@ -64,7 +65,7 @@ class SpotifyAPI(object):
  
 
 spotify = SpotifyAPI(client_id, client_secret)
-print(spotify.perform_request())
+token = spotify.access_token
+print(token)
 print(spotify.access_token_expires)
-print(spotify.access_token)
-
+print(spotify.access_token_did_expire)
