@@ -6,6 +6,15 @@ import base64
 client_id = 'a0ba4546898d4b79ba7b2eb7aaa3f3a5'
 client_secret = '2cde9d2445884dd88f5b04ea5eb30887'
 
+#Defining each step to be able to troubleshoot down de line/ 4 testing and tings
+
+#create a client id:client secret string as the client credentials
+#base 64 encode this string                         # this can be a method
+#pass the base 64 encoded client credentials into the authorization token headers
+#Get the access token                               # this can be a method
+#use the token to make a request to the spotify enpoints        # method
+#finally check the 
+
 client_creds = f"{client_id}:{client_secret}"
 client_creds_b64 = base64.b64encode(client_creds.encode())
 
