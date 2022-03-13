@@ -16,7 +16,6 @@ class SpotifyAPI(object):
     token_url = "https://accounts.spotify.com/api/token"
 
     def __init__(self, client_id, client_secret, *args, **kwargs): # always need the client id and secret.#
-        super().__init__(*args, **kwargs)
         self.client_id = client_id 
         self.client_secret = client_secret
 
@@ -67,4 +66,5 @@ class SpotifyAPI(object):
 spotify = SpotifyAPI(client_id, client_secret)
 print(spotify.perform_request())
 print(spotify.access_token_expires)
+print(spotify.access_token)
 
