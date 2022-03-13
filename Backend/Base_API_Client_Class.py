@@ -1,7 +1,7 @@
 import requests
 import datetime
 import base64
-
+import datetime
 
 client_id = 'a0ba4546898d4b79ba7b2eb7aaa3f3a5'
 client_secret = '2cde9d2445884dd88f5b04ea5eb30887'
@@ -46,13 +46,23 @@ class SpotifyAPI(object):
         token_data = self.get_token_data()
         token_headers = self.get_token_headers()
         r = requests.post(token_url, data=token_data, headers=token_headers)
-
-        ########## Valid request + extract the data
-        if valid_request:
-            token_response_data = r.json()
-            now = datetime.datetime.now()
-            access_token = token_response_data['access_token']
-            expires_in = token_response_data['expires_in'] # seconds
-            expires = now + datetime.timedelta(seconds=expires_in)
-    did_expire = expires < now
+        data = r.json()
+        if r.status_code in range(200,299):
+            return data
+        else:
+            raise Exception("Error with the request")
         
+    
+    def perform_auth(self):
+        data = self.perform_request()
+        access_token = data['access_token']
+
+        now = self.access_token_expires
+        expires_in = data['expires_in'] # seconds
+        expires = now + datetime.timedelta(seconds=expires_in)
+
+        self.access_token_expires = expires
+        self.access_token_did_expire = expires < now
+               
+        self.access_token = access_token 
+
