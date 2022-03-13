@@ -55,8 +55,9 @@ class SpotifyAPI(object):
         expires_in = data['expires_in'] # seconds
         expires = now + datetime.timedelta(seconds=expires_in)
 
+        #update the access token expires time and change did expire to false
         self.access_token_expires = expires
-        self.access_token_did_expire = expires < now
+        self.access_token_did_expire = expires < now # if expires is greater than (which it should be) it will change the variable to false
         self.access_token = access_token 
         # if self.access_token_did_expire:
         #     print(f"The access HaduToken expires at {self.access_token_expires}")
