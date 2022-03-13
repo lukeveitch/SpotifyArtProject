@@ -9,11 +9,16 @@ client_secret = '2cde9d2445884dd88f5b04ea5eb30887'
 #Defining each step to be able to troubleshoot down de line/ 4 testing and tings
 
 #create a client id:client secret string as the client credentials
-#base 64 encode this string                         # this can be a method
+#base 64 encode this string                         ## this can be a method
 #pass the base 64 encoded client credentials into the authorization token headers
-#Get the access token                               # this can be a method
-#use the token to make a request to the spotify enpoints        # method
-#finally check the 
+#Get the access token                               ## this can be a method
+#use the token to make a request to the spotify enpoints        ## method
+#finally check the the authorization actually worked            ## method
+    # do this by checking if the expiration of the access token has not expired
+    # if the access token has not expired 
+    # then it must be a valid request and give me the data I require
+
+        #data needs to be parsed -- seperate issue
 
 client_creds = f"{client_id}:{client_secret}"
 client_creds_b64 = base64.b64encode(client_creds.encode())
