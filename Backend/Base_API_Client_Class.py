@@ -25,6 +25,10 @@ class SpotifyAPI(object):
     def encode_those_creds_bs4(self):
         client_id = self.client_id
         client_secret = self.client_secret
+
+        if client_secret == None or client_id == None:
+            raise Exception("You must give me a client_id and client_secret silly monke")
+
         client_creds = f"{client_id}:{client_secret}"
         client_creds_b64 = base64.b64encode(client_creds.encode())
 
@@ -63,6 +67,5 @@ class SpotifyAPI(object):
 
         self.access_token_expires = expires
         self.access_token_did_expire = expires < now
-               
         self.access_token = access_token 
 
