@@ -25,7 +25,6 @@ class SpotifyAPI(object):
         client_secret = self.client_secret
         client_creds = f"{client_id}:{client_secret}"
         client_creds_b64 = base64.b64encode(client_creds.encode())
-
         return client_creds_b64.decode()
 
 ###Request Access Token
@@ -40,7 +39,6 @@ class SpotifyAPI(object):
         }
 
     def perform_request(self):
-
         token_url = self.token_url
         token_data = self.get_token_data()
         token_headers = self.get_token_headers()
@@ -64,9 +62,28 @@ class SpotifyAPI(object):
         #     print(f"The access HaduToken expires at {self.access_token_expires}")
         return "Authentication successful"
  
+ ###Request a refreshed Access Token
+    def get_access_token(self):
+        token = self.access_token
+        expires = self.access_token_expires
+        now = datetime.datetime.now()
+        if expires < now:
+            self.perform_request()
+            return self.get_access_token()
+        elif token == None:
+            self.perform_request()
+            return self.get_access_token() 
+        return token
+    
+    def get_resource_header(self):
+        access_token = self.get_access_token()
+        headers = {
+            "Authorization": f"Bearer {access_token}"
+        }
+        return headers
 
 spotify = SpotifyAPI(client_id, client_secret)
-token = spotify.access_token
-print(token)
+tokend = spotify.access_token
+print(tokend)
 print(spotify.access_token_expires)
 print(spotify.access_token_did_expire)
