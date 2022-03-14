@@ -1,16 +1,39 @@
 # import json 
 # import requests
-# from SpotifyToken import token
-# user_id = ""
+
+import requests
+from spotify_token import token_auth
 
 class QueryEndpoints:
     def __init__(self):
         #self.user_id = user_id
         pass
 
+    def get_resource(self, lookup_id, resource_type='albums', version='v1'):
+
+        endpoint = f"https://api.spotify.com/{version}/{resource_type}/{lookup_id}"
+        headers = token_auth.get_resource_header()
+
+        r = requests.get(endpoint, headers=headers)
+        return r.json()
+
+    def get_user_id(self, _id):
+        return self.get_resource(_id, resource_type='me')
+
+    def get_playlists(self, _id):
+        pass #return self.get_resource(_id, resource_type='albums')
+
     def playlist_info(self):
-        #return playlist image, name and number of tracks
+    #return playlist image, name and number of tracks
         pass
+
+    def get_last_six_months(self, _id):
+        #return top artist names
+
+        #return top tracks and the artists of those tracks
+        #return self.get_resource(_id, resource_type='artists')
+        pass
+
     def last_six_months(self):
         #return top artist names
 
@@ -21,3 +44,6 @@ class QueryEndpoints:
 
         #return top 3 most common genres in a users playlist
         pass
+
+endpoints = QueryEndpoints
+print(endpoints.get_user_id())
