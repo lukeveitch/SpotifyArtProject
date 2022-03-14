@@ -2,10 +2,8 @@ import requests
 import datetime
 import base64
 import datetime
-# from secrets import client_id, client_secret
+from creds import client_id, client_secret
 
-client_id = 'a0ba4546898d4b79ba7b2eb7aaa3f3a5'
-client_secret = '2cde9d2445884dd88f5b04ea5eb30887'
 
 class SpotifyAPI(object):
     client_id = None
@@ -83,7 +81,7 @@ class SpotifyAPI(object):
         return headers
 
 spotify = SpotifyAPI(client_id, client_secret)
-tokend = spotify.access_token
-print(tokend)
+spotify.perform_request()
+print(spotify.access_token)
 print(spotify.access_token_expires)
 print(spotify.access_token_did_expire)
