@@ -93,7 +93,8 @@ class SpotifyAPI(object):
         endpoint = "https://api.spotify.com/v1/me"
         access_token = self.get_access_token()
         print(access_token)
-        r = requests.get(endpoint, headers = {"Content-Type": "application/json",
+        r = requests.get(endpoint, headers = {"Accept": "application/json",
+                                              "Content-Type": "application/json",
                                               "Authorization": f"Bearer {access_token}"})
         return r.json()
 
