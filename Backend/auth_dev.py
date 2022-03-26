@@ -67,7 +67,7 @@ if token:
         number_of_playlist_tracks = item['tracks']['total']
 
         
-        print(f'Playlist id: {playlist_id}\nName: {playlist_name}\nOwner: {playlist_owner}\nNumber of tracks: {number_of_playlist_tracks}')
+        print(f'Playlist id: {playlist_id}\nName: {playlist_name}\nCreated by: {playlist_owner}\nNumber of tracks: {number_of_playlist_tracks}')
         print('---------------------')
 
 
