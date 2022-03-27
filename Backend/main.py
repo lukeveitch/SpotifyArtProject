@@ -1,6 +1,3 @@
-# import json 
-# import requests
-
 import requests
 from spotify_token import access
 
@@ -52,4 +49,3 @@ class QueryEndpoints:
         pass
 
 #endpoints = QueryEndpoints
-print(r.json())

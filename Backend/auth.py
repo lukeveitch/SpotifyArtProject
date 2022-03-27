@@ -1,11 +1,13 @@
-import requests
+import spotipy
+import spotipy.util as util
+from creds import client_id, client_secret
+import pprint
 
-r = requests.get('')
+username = 'spotify'
+scope = 'ugc-image-upload user-read-private user-read-email user-follow-read user-library-read user-top-read user-read-recently-played playlist-read-collaborative playlist-read-private'
 
-
-# client_id = 
-# response_type =
-# redirect_uri = https://www.bbc.co.uk/programmes/p02619x1
-# state = 
-scope = 'ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-private user-read-email user-follow-modify user-follow-read user-library-modify user-library-read streaming app-remote-control user-read-playback-position user-top-read user-read-recently-played playlist-modify-private playlist-read-collaborative playlist-read-private playlist-modify-public'
-#show_dialog optional
+token = util.prompt_for_user_token(username,
+                           scope,
+                           client_id=client_id,
+                           client_secret=client_secret,
+                           redirect_uri='https://puginarug.com/')
