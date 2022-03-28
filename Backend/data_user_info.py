@@ -37,11 +37,11 @@ print(f'---------------------')
 print(f'You have {number_of_playlists} playlists')
 print(f'---------------------')
 
-playlist_info = input('Would you like more information about your playlists? y/n')
+playlist_info = input('Would you like more information about your playlists? y/n\n>>')
 
 if playlist_info == 'y':
 
-    playlists_less_than_ten = []
+    playlists_less_than_ten = {}
 
     for item in spotify_user_playlists['items']:  
             
@@ -52,12 +52,16 @@ if playlist_info == 'y':
         number_of_playlist_tracks = item['tracks']['total']
 
         if number_of_playlist_tracks <= 10:
-            playlists_less_than_ten.append(playlist_id)
-
+            playlists_less_than_ten[playlist_name] = playlist_id
         
         print(f'Playlist id: {playlist_id}\nName: {playlist_name}\nCreated by: {playlist_owner}\nNumber of tracks: {number_of_playlist_tracks}')
         print('---------------------')
 
     num = len(playlists_less_than_ten)
     print(f'You have {num} playlists that are less than 10 tracks.')
-else: print('Stop being a fat cunt')
+    print(playlists_less_than_ten)
+
+elif playlist_info == 'n': 
+    print('Stop being a fat cunt')
+else:
+    pass
