@@ -46,6 +46,7 @@ top_tracks = sp.current_user_top_tracks(time_range = "long_term")
 # print(f'---------------------')
 # print(f'You have {number_of_playlists} playlists')
 # print(f'---------------------')
+
 # print(f'---------------------')
 # print(f'---------------------')
 
