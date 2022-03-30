@@ -100,7 +100,7 @@ class SpotifyAPI(object):
 
 token_auth = SpotifyAPI(client_id, client_secret)
 token_auth.perform_request()
-
+access = token_auth.access_token
 print(token_auth.access_token)
 print(token_auth.access_token_expires)
 print(token_auth.access_token_did_expire)

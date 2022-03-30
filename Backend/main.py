@@ -1,8 +1,11 @@
-# import json 
-# import requests
-
 import requests
-from spotify_token import token_auth
+from spotify_token import access
+
+endpoint = "https://api.spotify.com/v1/me"
+access_token = access
+r = requests.get(endpoint, headers = {"Accept": "application/json",
+                                        "Content-Type": "application/json",
+                                        "Authorization": "Bearer "})
 
 class QueryEndpoints:
     def __init__(self):
@@ -45,5 +48,4 @@ class QueryEndpoints:
         #return top 3 most common genres in a users playlist
         pass
 
-endpoints = QueryEndpoints
-print(endpoints.get_user_id())
+#endpoints = QueryEndpoints
