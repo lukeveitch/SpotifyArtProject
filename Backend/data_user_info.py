@@ -9,8 +9,6 @@ results = sp.current_user_saved_tracks()
 spotify_user = sp.current_user()
 spotify_user_playlists = sp.current_user_playlists()
 
-top_tracks = sp.current_user_top_tracks(time_range = "long_term")
-
 
 def topartists():
     terms = ["short_term", "medium_term", "long_term"]
@@ -24,12 +22,24 @@ def topartists():
              data[term][count+1] = items['name']
     return data
     # print('-----------')
-pprint.pprint(topartists())
+
 
 # # ## TOP TRACKS
-# for count, items in enumerate(top_tracks['items']):
-#      print(count+1, items['name'])
+def toptracks():
+    terms = ["short_term", "medium_term", "long_term"]
+    data = {}
+    for term in terms: 
+        data[term] = {}
 
+        top_tracks = sp.current_user_top_tracks(time_range = term)
+        # ## TOP ARTISTS
+        for count, items in enumerate(top_tracks['items']):
+             data[term][count+1] = {}
+             data[term][count+1][items['artists'][0]['name']] = items['name']
+
+
+    return data
+pprint.pprint(toptracks())
 # # ## USER NAME
 # name = spotify_user['display_name']
 
