@@ -1,4 +1,3 @@
-from flask import jsonify
 from auth import token
 import spotipy
 import pprint
