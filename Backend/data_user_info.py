@@ -12,29 +12,29 @@ top_artists = sp.current_user_top_artists(time_range = "long_term")
 top_tracks = sp.current_user_top_tracks(time_range = "long_term")
 
 
-# ## TOP ARTISTS
-# for count, items in enumerate(top_artists['items']):
-#     print(count+1, items['name'])
-# print('-----------')
+## TOP ARTISTS
+for count, items in enumerate(top_artists['items']):
+    print(count+1, items['name'])
+print('-----------')
 
 # ## TOP TRACKS
-# for count, items in enumerate(top_tracks['items']):
-#     print(count+1, items['name'])
+for count, items in enumerate(top_tracks['items']):
+    print(count+1, items['name'])
 
 # ## USER NAME
-# name = spotify_user['display_name']
+name = spotify_user['display_name']
 
 # ## FOLLOWERS
-# number_of_followers = spotify_user['followers']['total']
+number_of_followers = spotify_user['followers']['total']
 
 # ## URI
-# user_uri = spotify_user['uri']
+user_uri = spotify_user['uri']
 
 # ## NUMBER OF SONGS SAVED
-# number_of_songs_saved = results['total']
+number_of_songs_saved = results['total']
 
 # ## NUMBER OF PLAYLISTS
-# number_of_playlists = spotify_user_playlists['total']
+number_of_playlists = spotify_user_playlists['total']
 
 
 
