@@ -1,16 +1,15 @@
-from numpy import number
+from flask import jsonify
 from auth import token
 import spotipy
 import pprint
 
 sp = spotipy.Spotify(auth=token)
-
-
 results = sp.current_user_saved_tracks()
 spotify_user = sp.current_user()
 spotify_user_playlists = sp.current_user_playlists()
 
 
+## TOP ARTISTS
 def topartists():
     terms = ["short_term", "medium_term", "long_term"]
     data = {}
@@ -22,10 +21,8 @@ def topartists():
         for count, items in enumerate(top_artists['items']):
              data[term][count+1] = items['name']
     return data
-    # print('-----------')
 
-
-# # ## TOP TRACKS
+## TOP TRACKS
 def toptracks():
     terms = ["short_term", "medium_term", "long_term"]
     data = {}
@@ -37,23 +34,18 @@ def toptracks():
         for count, items in enumerate(top_tracks['items']):
              data[term][count+1] = {}
              data[term][count+1][items['artists'][0]['name']] = items['name']
-
-
     return data
 
+## INFORMATION
 def user_info():
     ## USER NAME
     name = spotify_user['display_name']
-
     ## FOLLOWERS
     number_of_followers = spotify_user['followers']['total']
-
     ## URI
     user_uri = spotify_user['uri']
-
     ## NUMBER OF SONGS SAVED
     number_of_songs_saved = results['total']
-
     ## NUMBER OF PLAYLISTS
     number_of_playlists = spotify_user_playlists['total']
 
@@ -64,57 +56,37 @@ def user_info():
             'playlists': number_of_playlists
             }
 
-pprint.pprint(user_info())
+def all_playlist_data_dump():
+    return spotify_user_playlists
 
-# # print(f'---------------------')
-# # print(f'Hi {name}. Welcome to this art spotify art project.')
-# # print(f'---------------------')
-# # print(f'You have {number_of_songs_saved} songs saved')
-# # print(f'---------------------')
-# # print(f'You have {number_of_playlists} playlists')
-# # print(f'---------------------')
-# # print(f'---------------------')
-# # print(f'---------------------')
+def playlists():
+    ## PLAYLISTS
+    playlists_less_than_ten = {}
+    lst = []
+    all_playlists = {}
 
-# #playlist_info = input('Would you like more information about your playlists? y/n\n>>')
+    for item in spotify_user_playlists['items']:  
+        playlist = {}
+        #playlist information
+        playlist['playlist_id'] = item['id']
+        playlist['playlist_name'] = item['name']
+        playlist['created_by'] = item['owner']['display_name']
+        playlist['playlist_image'] = item['images']
+        playlist['number_of_playlist_tracks'] = item['tracks']['total']
 
-# # if playlist_info == 'y':
+        if playlist['number_of_playlist_tracks'] <= 10:
+            playlists_less_than_ten[item['name']] = item['id']
 
-# playlists_less_than_ten = {}
-# playlists = {}
+        ## PLAYLIST IMAGE
+        for el in  item['images']:
+            for key, value in el.items():
+                if key =='url':
+                    playlist[key] = value
 
-# for item in spotify_user_playlists['items']:  
-#     # pprint.pprint(item)
+        lst.append(playlist)
 
-#     #playlist information
-#     playlist_id = item['id']
-#     playlist_name = item['name']
-#     playlist_owner = item['owner']['display_name']
-#     playlist_image = item['images']
-#     number_of_playlist_tracks = item['tracks']['total']
+    all_playlists['items'] = lst
+    return all_playlists, playlists_less_than_ten
 
-#     if number_of_playlist_tracks <= 10:
-#         playlists_less_than_ten[playlist_name] = playlist_id
+pprint.pprint(playlists())
 
-#     ## PLAYLIST ID, NAME, OWNER, NUMBER OF TRACKS
-#     print(f'Playlist id: {playlist_id}\nName: {playlist_name}\nCreated by: {playlist_owner}\nNumber of tracks: {number_of_playlist_tracks}')
-
-#     ## PLAYLIST IMAGE
-#     for el in playlist_image:
-#         for key, value in el.items():
-#             if key =='url':
-#                 print(key, value)
-#     print('---------------------')
-
-
-# ## DICTIONARY OF ALL THE PLAYLISTS WITH LESS THAN 10 TRACKS
-# num = len(playlists_less_than_ten)
-# print(f'You have {num} playlists that are less than 10 tracks.')
-# print(playlists_less_than_ten)
-
-# elif playlist_info == 'n': 
-#     print('Stop being a fat cunt')
-# else:
-#     pass
-# playlist_cover_image
-# playlist_tracks
