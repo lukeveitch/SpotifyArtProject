@@ -1,3 +1,4 @@
+from numpy import number
 from auth import token
 import spotipy
 import pprint
@@ -39,24 +40,31 @@ def toptracks():
 
 
     return data
-pprint.pprint(toptracks())
-# # ## USER NAME
-# name = spotify_user['display_name']
 
-# # ## FOLLOWERS
-# number_of_followers = spotify_user['followers']['total']
+def user_info():
+    ## USER NAME
+    name = spotify_user['display_name']
 
-# # ## URI
-# user_uri = spotify_user['uri']
+    ## FOLLOWERS
+    number_of_followers = spotify_user['followers']['total']
 
-# # ## NUMBER OF SONGS SAVED
-# number_of_songs_saved = results['total']
+    ## URI
+    user_uri = spotify_user['uri']
 
-# # ## NUMBER OF PLAYLISTS
-# number_of_playlists = spotify_user_playlists['total']
+    ## NUMBER OF SONGS SAVED
+    number_of_songs_saved = results['total']
 
+    ## NUMBER OF PLAYLISTS
+    number_of_playlists = spotify_user_playlists['total']
 
+    return {'name': name, 
+            'number_of_followers': number_of_followers,
+            'uri': user_uri,
+            'songs_saved': number_of_songs_saved,
+            'playlists': number_of_playlists
+            }
 
+pprint.pprint(user_info())
 
 # # print(f'---------------------')
 # # print(f'Hi {name}. Welcome to this art spotify art project.')
