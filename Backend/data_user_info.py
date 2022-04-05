@@ -9,6 +9,7 @@ spotify_user_playlists = sp.current_user_playlists()
 
 
 ## TOP ARTISTS
+<<<<<<< HEAD
 def topartists():
     terms = ["short_term", "medium_term", "long_term"]
     data = {}
@@ -57,6 +58,30 @@ def user_info():
 
 def all_playlist_data_dump():
     return spotify_user_playlists
+=======
+for count, items in enumerate(top_artists['items']):
+    print(count+1, items['name'])
+print('-----------')
+
+# ## TOP TRACKS
+for count, items in enumerate(top_tracks['items']):
+    print(count+1, items['name'])
+
+# ## USER NAME
+name = spotify_user['display_name']
+
+# ## FOLLOWERS
+number_of_followers = spotify_user['followers']['total']
+
+# ## URI
+user_uri = spotify_user['uri']
+
+# ## NUMBER OF SONGS SAVED
+number_of_songs_saved = results['total']
+
+# ## NUMBER OF PLAYLISTS
+number_of_playlists = spotify_user_playlists['total']
+>>>>>>> main
 
 def playlists():
     ## PLAYLISTS
@@ -76,11 +101,24 @@ def playlists():
         if playlist['number_of_playlist_tracks'] <= 10:
             playlists_less_than_ten[item['name']] = item['id']
 
+<<<<<<< HEAD
         ## PLAYLIST IMAGE
         for el in  item['images']:
             for key, value in el.items():
                 if key =='url':
                     playlist[key] = value
+=======
+# print(f'---------------------')
+# print(f'Hi {name}. Welcome to this art spotify art project.')
+# print(f'---------------------')
+# print(f'You have {number_of_songs_saved} songs saved')
+# print(f'---------------------')
+# print(f'You have {number_of_playlists} playlists')
+# print(f'---------------------')
+
+# print(f'---------------------')
+# print(f'---------------------')
+>>>>>>> main
 
         lst.append(playlist)
 
