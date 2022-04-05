@@ -30,4 +30,4 @@ api.add_resource(topTracks, '/topTracks')   #returns top tracks short-term, medi
 
 
 if __name__ == '__main__':
-    app.run()  # run our Flask app
+    app.run(debug = True)  
