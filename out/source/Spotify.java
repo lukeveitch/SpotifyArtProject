@@ -17,7 +17,7 @@ w, h = 1000, 1000
 
 subdivisions = 50000
 
-Not too small
+Not too smalls
 min_diff = 80
 
 Space between quads
