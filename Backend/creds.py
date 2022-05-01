@@ -1,2 +1,3 @@
-client_id = 'a0ba4546898d4b79ba7b2eb7aaa3f3a5'
-client_secret = '2cde9d2445884dd88f5b04ea5eb30887'
+import os
+client_id = os.environ.get('client_id')
+client_secret =  os.environ.get('client_secret')
