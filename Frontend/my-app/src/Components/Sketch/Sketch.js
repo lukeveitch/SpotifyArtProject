@@ -4,7 +4,8 @@ import s from "./Sketch.styles";
 
 const Sketch1 = p5 => {
   p5.setup = () => {
-    p5.createCanvas(p5.windowWidth, p5.windowHeight);
+    let canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
+    canvas.parent('container')
     p5.background(0);
     p5.blendMode(p5.ADD);
 
@@ -14,11 +15,11 @@ const Sketch1 = p5 => {
     const coloursArray = [c1, c2, c3];
 
     let i = 0;
-    while(i < 10) {
+    while (i < 10) {
       i += 1;
 
       let j = 0;
-      while(j < 10){
+      while (j < 10) {
         j += 1;
 
         let posX = i * 80;
@@ -29,11 +30,11 @@ const Sketch1 = p5 => {
         let squareSize2 = p5.random(50);
         let squareSize3 = p5.random(50);
 
-        p5.fill(coloursArray[Math.floor(Math.random()*coloursArray.length)]);
+        p5.fill(coloursArray[Math.floor(Math.random() * coloursArray.length)]);
         p5.rect(posX, posY, squareSize, squareSize2);
-        p5.fill(coloursArray[Math.floor(Math.random()*coloursArray.length)]);
+        p5.fill(coloursArray[Math.floor(Math.random() * coloursArray.length)]);
         p5.rect(posX + dist, posY + dist, squareSize3, squareSize);
-        p5.fill(coloursArray[Math.floor(Math.random()*coloursArray.length)]);
+        p5.fill(coloursArray[Math.floor(Math.random() * coloursArray.length)]);
         p5.rect(posX + dist * 2, posY + dist * 2, squareSize3, squareSize2);
 
       }
@@ -49,7 +50,6 @@ const Sketch1 = p5 => {
   };
 };
 
-
 const Sketch = () => {
 
   useEffect(() => {
@@ -57,9 +57,11 @@ const Sketch = () => {
   }, []);
 
   return (
-      <s.SketchContainer>
-        <></>
-      </s.SketchContainer>
+      <div id="container" style={{margin: "auto",
+        width: "50%",
+        border: "5px solid red"}}>
+      </div>
+
   );
 };
 
