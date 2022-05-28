@@ -1,13 +1,12 @@
 import { Header } from "../src/Components/Header/Header";
-import Sketch from "./Components/Sketch/Sketch";
+import {Main} from "./Components/Main/Main";
 
 function App() {
 
   return (
     <div className="App">
       <Header />
-
-      <Sketch />
+      <Main />
     </div>
   );
 }

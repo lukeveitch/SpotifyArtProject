@@ -6,7 +6,7 @@ export const Header = () => {
   return (
       <s.HeaderContainer>
         <s.Title>
-          <h1>Takes 2 2 jango</h1>
+          <h1>Takes 2 2 django</h1>
         </s.Title>
       </s.HeaderContainer>
   );
