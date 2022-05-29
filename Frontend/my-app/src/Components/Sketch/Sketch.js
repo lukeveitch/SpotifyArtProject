@@ -1,7 +1,10 @@
 function Sketch(p) {
+  let dimension = 800;
+  let backgroundColor = 0;
+
   p.setup = function () {
-    p.createCanvas(1000, 1000);
-    p.background(0);
+    p.createCanvas(dimension, dimension);
+    p.background(backgroundColor);
     p.blendMode(p.ADD)
 
     let c1 = "#ffb2b2"
@@ -9,6 +12,16 @@ function Sketch(p) {
     let c3 = "#a223ff"
     const coloursArray = [c1, c2, c3];
 
+    //backgroundSquare
+    p.push();
+    p.noFill();
+    p.stroke('white')
+    p.strokeWeight(4);
+    p.square(0, 0, dimension);
+    p.pop();
+
+    //squares generation
+    p.push();
     let i = 0;
     while (i <= 11) {
       let j = 0;
@@ -31,8 +44,11 @@ function Sketch(p) {
       }
       i += 1;
     }
+    p.pop();
 
-    console.log("we are done");
+
+
+
 
     p.draw = () => {
 
