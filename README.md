@@ -1,4 +1,4 @@
 # SpotifyArtProject
  
- Takes two to django.
+ Takes two to django
  
